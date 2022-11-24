@@ -1,0 +1,12 @@
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\bin\Debug\net5.0\DSO.Email.OTP.deps.json
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\bin\Debug\net5.0\DSO.Email.OTP.dll
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\bin\Debug\net5.0\ref\DSO.Email.OTP.dll
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\bin\Debug\net5.0\DSO.Email.OTP.pdb
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\obj\Debug\net5.0\DSO.Email.OTP.csproj.AssemblyReference.cache
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\obj\Debug\net5.0\DSO.Email.OTP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\obj\Debug\net5.0\DSO.Email.OTP.AssemblyInfoInputs.cache
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\obj\Debug\net5.0\DSO.Email.OTP.AssemblyInfo.cs
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\obj\Debug\net5.0\DSO.Email.OTP.csproj.CoreCompileInputs.cache
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\obj\Debug\net5.0\DSO.Email.OTP.dll
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\obj\Debug\net5.0\ref\DSO.Email.OTP.dll
+C:\Users\TGTM8956\Documents\Projects\DSOAssessment\DSO.Email.OTP\obj\Debug\net5.0\DSO.Email.OTP.pdb

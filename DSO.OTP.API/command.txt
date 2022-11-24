@@ -1,0 +1,52 @@
+apt-get update; apt-get install curl # multiple commands to install curl tool before run the update
+curl http://localhost:5000/api/otp/GenerateOTP?email=test@dso.org.sg
+apt-get  install sqllite3 # install sqllite3
+sqllite3 # command to enter into sqllite3
+.open OTPServicedb.db # to open sqllite db
+CREATE TABLE OTP(ID INTEGER PRIMARY KEY AUTOINCREMENT,OTPCode TEXT NOT NULL,Email TEXT NOT NULL,CREATEDDATE REAL DEFAULT (datetime('now', 'localtime')),OTPCheckCount INTEGER NOT NULL);
+.tables # commands to list all tables
+
+
+
+docker build -t dso_otp_api_dev .  # . means where the docker file is there
+docker run --rm -p 8000:5000 dso_otp_api_dev
+docker run --name dsoassessment-dso_otp_api_dev_container-1 --rm -p 8000:5000 dso_otp_api_dev
+
+
+email validate subdomain
+time is it server or client
+validateotp - check for email id 
+
+
+apt-get update; apt-get install curl
+curl http://localhost:5000/api/otp/GenerateOTP?email=test@dso.org.sg
+curl http://localhost:5000/api/otp/listall
+
+curl http://localhost:8000/api/otp/listall
+
+
+docker build -t dso_otp_api_dev .
+docker run --name dso-assessment-dso_otp_api_dev_container-1 --rm -p 8000:5000 dso_otp_api_dev
+
+docker login -u mvsradhakrishna@gmail.com
+docker build -t rkmuddala/dso_otp_api_dev:latest .
+docker push rkmuddala/dso_otp_api_dev:latest
+docker run --name dso-assessment-dso_otp_api_dev_container-1 --rm -p 8000:5000 rkmuddala/dso_otp_api_dev
+
+
+Regex:
+
+^((\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)\s*[;,.]{0,1}\s*)+$
+
+^((\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)\s*[;,.]{0,1}\s*)+$
+
+
+^[A-Za-z0-9._%+-]+@testdomain\.com$
+
+.dso.org.sg$
+
+^\w+([-+.']\w+)*@dso.org.sg$
+
+^\w+([-+.']\w+)*@\w+([-.]{0,1}\w+)*\.dso.org.sg$
+
+^\w+([-+.']\w+)*@\w+([-.]{0,0}\w+)\/*.dso.org.sg$

@@ -1,0 +1,23 @@
+@page
+@model GenerateOTPModel
+@{
+    ViewData["Title"] = "Generate OTP";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to GenerateOTP</p>
+<form action="javascript:void(0);" method="POST" onsubmit="GenerateOTP()">
+    <input type="text" id="add-otp" placeholder="Enter your email address" type="email" required
+        value="test@dso.org.sg">
+    <input type="submit" value="Generate OTP">    
+</form>
+<div id="response" style="visibility:hidden;">
+<label  id="otpcode" />
+<label id="emailsentstatus"/>
+
+</div>
+
+<div id="errorresponse" style="visibility:hidden;">
+<label id="otperror" style="color:red;"></label>
+</div>
+

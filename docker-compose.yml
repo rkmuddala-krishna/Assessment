@@ -1,0 +1,14 @@
+
+version: '3.4'
+
+services:
+  dso_otp_api_prod_container:
+    image: dso_otp_api_prod
+    ports:
+      - "5001:81"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    cpus: 1.0
+    mem_reservation: 512m
+   

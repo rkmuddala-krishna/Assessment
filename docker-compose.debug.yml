@@ -1,0 +1,15 @@
+
+version: '3.4'
+
+services:
+  dso_otp_api_dev_container:
+    image: dso_otp_api_dev
+    ports:
+      - "8000:5001"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    cpus: 1.0
+    mem_reservation: 512m
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw

@@ -1,0 +1,45 @@
+@page
+@model ValidateOTPModel
+@{
+    ViewData["Title"] = "One-Time Password (OTP) verification";
+}
+<h1>@ViewData["Title"]</h1>
+<h1 id="utctime"></h1>
+You will receive an OTP via Email. Please enter it below </br>
+<form action="javascript:void(0);" method="POST" onsubmit="ValidateOTP()">
+    <input type="text" id="validate-otp" placeholder="Enter OTP" type="number" required>
+    <input type="text" id="validate-email" placeholder="Enter Email" type="email" required value="test@dso.org.sg">
+    <input type="submit" value="Verify"> </br>
+    If you do not receive an Email or your OTP has expired, you can generate a new one after 1 minute
+    <div>OTP expires in <span id="time">00:00</span> seconds!</div>
+    <br>
+    <div id="response" style="visibility:hidden;">
+        <label id="otpcodestatus" />
+        <label id="emailaddress" />
+        <label id="otpcodecreateddate" />
+    </div>
+
+    <div id="errorresponse" style="visibility:hidden;">
+        <label id="otperror" style="color:red;"></label>
+    </div>
+
+
+
+</form>
+
+
+<script type="text/javascript">
+
+`use strict`;
+function refreshTime() {
+  const timeDisplay = document.getElementById("utctime");
+  const dateString = new Date().toUTCString();
+  const formattedString = dateString.replace(", ", " - ");
+  timeDisplay.textContent = formattedString;
+}
+  
+window.onload = function () {
+    startTimer(59, 'time');
+setInterval(refreshTime, 1000);
+};
+</script>

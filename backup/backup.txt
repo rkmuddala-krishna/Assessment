@@ -1,0 +1,104 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using DSO.ServiceLibrary;
+using DSO.OTP.API.DB;
+using Microsoft.Extensions.Configuration;
+using DSO.OTP.API.Models;
+using DSO.OTP.API.Models.Enum;
+using DSO.OTP.API.Services.Interface;
+namespace DSO.OTP.API.Controllers
+{
+    [ApiController]
+    [Route("api/OTP")]
+    public class OTPController : ControllerBase
+    {
+        private readonly OTPDBContext _db;
+        private IOPTService _otpService;
+        private IEmailService _emailService;
+
+        private IOTPDBService _OTPDBService;
+        private readonly ILogger<OTPController> _logger;
+        private IConfiguration _iConfiguration;
+        public OTPController(ILogger<OTPController> logger, IOPTService otpService, IEmailService emailService, OTPDBContext dBContext, IConfiguration configuration, IOTPDBService oTPDBService)
+        {
+            _logger = logger;
+            _otpService = otpService;
+            _db = dBContext;
+            _iConfiguration = configuration;
+            _emailService = emailService;
+            _OTPDBService = oTPDBService;
+            emailService.Subscribe(_otpService);
+        }
+
+        [HttpGet("Listall")]
+        public async Task<IActionResult> get()
+        {
+            //var otpresults = _db.OTP.Select(x => x).ToList();
+            var otpdbresults = _OTPDBService.All().Result;
+            return await Task.FromResult(Ok(otpdbresults));
+
+        }
+        [HttpPost("ValidateOTP")]
+        public async Task<IActionResult> ValidateOTP([FromBody] OTPRequestInput otpinput)
+        {
+            if (otpinput.OTPCode.Equals(string.Empty))
+                return BadRequest(string.Format("OTP is required"));
+            //var otpresult = _db.OTP.Where(s => s.OTPCode.Equals(otpinput.OTPCode)).Select(x => x);
+            var otpresult = _OTPDBService.Validate(otpinput.OTPCode);
+
+                  
+            if (otpresult.Result == ((OTPStatusType)0).ToString())
+            {
+                try
+                {
+                      var otpmodel = new OTP.API.Models.OTP () {  OTPCheckCount = OTPCheckCount +1 , } ;
+                    var test = await _OTPDBService.Update(otpinput.OTPCode);
+                    
+                }
+                catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+                {
+
+                    _logger.LogError($"Error updating record to DB : {ex.Data}");
+                }
+
+
+            }
+
+            var result = new { status = StatusCode(200), data = new { OTP_Status = otpstatus.ToString(), emailaddress = otpmodel.Email } };
+            return await Task.FromResult(Ok(result));
+        }
+
+        [HttpPost("GenerateOTP")]
+        public async Task<IActionResult> GenerateOTP([FromBody] OTPRequestInput emailinput)
+        {
+            if (emailinput.Email.Equals(string.Empty))
+                return BadRequest(string.Format("Email address is required"));
+
+            if (!_emailService.IsValidEmail(emailinput.Email))
+            {
+                return BadRequest(string.Format("Invalid Email address"));
+            }
+            var otp = _otpService.CreateOTP(emailinput.Email);
+            try
+            {
+                _db.OTP.Add(new Models.OTP { OTPCode = otp, Email = emailinput.Email });
+                _db.SaveChanges();
+            }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+
+                _logger.LogError($"Error saving record to DB : {ex.Data}");
+            }
+
+            var otpresult = _db.OTP.Where(s => s.OTPCode.Equals(otp)).First(); ;
+            var result = new { status = StatusCode(200), data = new { otp = otpresult.OTPCode, emailsentstatus = _emailService.EmailSentStatus, createddate = otpresult.CreatedDate } };
+            return await Task.FromResult(Ok(result));
+        }
+    }
+
+
+}

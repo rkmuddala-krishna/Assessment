@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "RnXdSzPES8Xu8i0ymHchiP3RKvOJOgd9CTqTFm/xO+nF2NXRnmtqz+cqWIGyDaKCNJh30tXmwwzP2Y7U6bVIFQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\TGTM8956\\Documents\\Projects\\SelfLearning\\DSOAssessment\\DSO.ServiceLibrary\\DSO.ServiceLibrary.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\TGTM8956\\.nuget\\packages\\otp.net\\1.2.2\\otp.net.1.2.2.nupkg.sha512"
+  ],
+  "logs": []
+}
